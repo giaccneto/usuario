@@ -1,7 +1,9 @@
 package com.giaccneto.usuario.infrastructure.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
+@Builder
 @Entity
 @Table(name = "telefone")
 public class Telefone {

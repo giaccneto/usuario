@@ -1,8 +1,9 @@
 package com.giaccneto.usuario.infrastructure.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
-
+@Builder
 @Entity
 @Table(name = "endereco")
 public class Endereco {
