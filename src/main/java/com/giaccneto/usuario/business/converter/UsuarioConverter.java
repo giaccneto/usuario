@@ -73,7 +73,6 @@ public class UsuarioConverter {
             enderecos.add(paraEnderecoDTO(enderecoDTO));
         }
         return enderecos;
-        // return enderecoDTOS.stream().map(this::paraListaEndereco).toList();
     }
     public EnderecoDTO paraEnderecoDTO(Endereco enderecoDTO){
         return EnderecoDTO.builder()
@@ -94,6 +93,17 @@ public class UsuarioConverter {
         return TelefoneDTO.builder()
                 .numero(telefoneDTO.getNumero())
                 .ddd(telefoneDTO.getDdd())
+                .build();
+    }
+
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario entity){
+        return Usuario.builder()
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : entity.getNome())
+                .id(entity.getId())
+                .senha(usuarioDTO.getSenha()!= null ? usuarioDTO.getSenha() : entity.getSenha())
+                .email(usuarioDTO.getEmail()!= null ? usuarioDTO.getEmail() : entity.getEmail())
+                .enderecos(entity.getEnderecos())
+                .telefones(entity.getTelefones())
                 .build();
     }
 }
