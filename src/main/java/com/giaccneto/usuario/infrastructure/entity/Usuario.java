@@ -26,19 +26,88 @@ public class Usuario implements UserDetails {
     @Column(name = "senha")
     private String senha;
 
+//    public Usuario() {
+//    }
+//
+//    public Usuario(Long id, String nome, String email, String senha, List<Endereco> enderecos, List<Telefone> telefones) {
+//        this.id = id;
+//        this.nome = nome;
+//        this.email = email;
+//        this.senha = senha;
+//        this.enderecos = enderecos;
+//        this.telefones = telefones;
+//    }
+
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private List<Endereco> enderecos;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private List<Telefone> telefones;
+
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getNome() {
+//        return nome;
+//    }
+//
+//    public void setNome(String nome) {
+//        this.nome = nome;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getSenha() {
+//        return senha;
+//    }
+//
+//    public void setSenha(String senha) {
+//        this.senha = senha;
+//    }
+//
+//    public List<Endereco> getEnderecos() {
+//        return enderecos;
+//    }
+//
+//    public void setEnderecos(List<Endereco> enderecos) {
+//        this.enderecos = enderecos;
+//    }
+//
+//    public List<Telefone> getTelefones() {
+//        return telefones;
+//    }
+//
+//    public void setTelefones(List<Telefone> telefones) {
+//        this.telefones = telefones;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of();
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 }

@@ -11,11 +11,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.giaccneto.usuario.infrastructure.entity.Usuario.*;
+
 @Component
 public class UsuarioConverter {
 
     public Usuario paraUsuario(UsuarioDTO usuarioDTO){
-        return Usuario.builder()
+        return builder()
                 .nome(usuarioDTO.getNome())
                 .email(usuarioDTO.getEmail())
                 .senha(usuarioDTO.getSenha())
@@ -99,7 +101,7 @@ public class UsuarioConverter {
     }
 
     public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario entity){
-        return Usuario.builder()
+        return builder()
                 .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : entity.getNome())
                 .id(entity.getId())
                 .senha(usuarioDTO.getSenha()!= null ? usuarioDTO.getSenha() : entity.getSenha())
