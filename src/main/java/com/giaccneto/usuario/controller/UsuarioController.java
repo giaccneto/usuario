@@ -1,6 +1,8 @@
 package com.giaccneto.usuario.controller;
 
 import com.giaccneto.usuario.business.UsuarioService;
+import com.giaccneto.usuario.business.dto.EnderecoDTO;
+import com.giaccneto.usuario.business.dto.TelefoneDTO;
 import com.giaccneto.usuario.business.dto.UsuarioDTO;
 import com.giaccneto.usuario.infrastructure.entity.Usuario;
 import com.giaccneto.usuario.infrastructure.security.JwtUtil;
@@ -37,7 +39,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity <Usuario> buscaUsuarioPorEmail(@RequestParam("email") String email){
+    public ResponseEntity <UsuarioDTO> buscaUsuarioPorEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email));
 
     }
@@ -52,5 +54,13 @@ public class UsuarioController {
     @PutMapping
     public ResponseEntity<UsuarioDTO> atualizaUsuario(@RequestParam UsuarioDTO dto, @RequestHeader ("Authorization") String token){
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token,dto));
+    }
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO dto, @RequestParam("id") Long id){
+        return ResponseEntity.ok(usuarioService.atualizaEndereco(id, dto));
+    }
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizaTelefone(@RequestBody TelefoneDTO dto, @RequestParam("id") Long id){
+        return ResponseEntity.ok(usuarioService.atualizaTelefone(id, dto));
     }
 }
